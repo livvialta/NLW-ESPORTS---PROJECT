@@ -1,0 +1,392 @@
+/*
+Reset CSS
+
+Tira tudo que o navegador deixa como padrão.
+
+* margin: 0;
+padding:0;
+box-sizing: border-box
+(Para a box que vc criar sempre manter o tamanho já predefinido por vc, e coisas como padding não faça aumentar esse tamanho para (tamanho predefinido) + padding)
+*/
+
+*{ margin: 0;
+padding:0;
+box-sizing: border-box;
+}
+
+/* Outra maneira de fazer a header, é:
+
+header{
+    text-align: center;
+    margin-top: 32px; 
+}
+    Poderia ser também um padding, para dar esse espaço.
+header img {
+    width: 120px;
+    border-radius: 50%;
+
+Porém, o Text-align não pode ser sempre utilizado... Por exemplo, agora iremos utilizar a div como propriedade para alterarmos e criarmos esse fundinho colorido gradiant, e o TEXT-ALIGN será inutil.
+Mas por que? Pelo fato de que div não tem propriedade de texto e o TEXT-ALIGN só mexe em locais onde há propriedade de texto.
+
+Então para isso, há uma alternativa de utilizar ou DISPLAY: FLEX ou Margin: Auto. (Altere isso mexendo na própria Header div, se não n funcionará.)
+
+E já na questão de largura (width), teremos que modificar também, por que ao mexermos com a Header div, colocaremos a mesma largura (width) que na Header img e assim, se não mexermos na width da img, ficará escondido todo o trabalho que faremos com o gradiant e etc.
+Então, como solução para isso, utilizamos como Width o valor de 100%.
+Mas 100% de que? 100% em relação a div. Teste na prática e observe.
+
+Agora, a questão da height (altura) serve para auxiliar na hora da animação, por que enquanto não colocamos uma altura ali, fica entedido que está meio que vazio.
+
+Então utilizamos um calculo (calc) para somar 120px que é a altura da header + 32px de padding (espaçamento).
+}
+*/
+header{
+    height: calc(120px + 32px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 32px;
+}
+
+/*
+Utilizamos o display flex e o padding para possibilitar que houvesse a bordinha 100% redondinha com a imagem centralizada ao meio com um padding ao redor em todas as direções.
+*/
+
+header div {
+    width: 120px;
+    background-image: linear-gradient(90deg, #9572fc 0%, #00ffa6 50.52%, #00d9ff 100%);
+    border-radius: 50%;
+    display: flex;
+    padding: 4px;
+    transition:  transform .5s;
+    animation: fromTop .7s .2s backwards;
+
+}
+
+header div img{
+    width: 100%;
+    border-radius: 50%;
+   
+}
+
+header div:hover{
+    transform: scale(1.1);
+}
+
+/*Como tirar a bolinha da lista não ordenada
+*/
+
+ul{
+    list-style: none;
+    }
+
+    /*
+Primeira propriedade de 
+background-image com o seletor url = para pegar uma imagem para ser o fundo e a url para achar onde ela está no mundo, e se estiver numa pastinha no código tem que colocar ./(nome da pastinha da onde está a img) para achar.
+
+background position é para posicionar o fundo no topo e centralizar sempre.
+background-size é para qnd dermos zoom ou qlqr coisa ele se adapte a qlqr tela automaticamente.
+
+background-repeat serve para a imagem n ficar se repetindo na tela várias vezes, e sim ficar só uma.
+
+background-color para colocar uma cor no fundo da tela onde a imagem acaba.
+*/
+
+body{
+    background-image: url(./img/bg.jpg);
+    background-position: top center;
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-color: #121214;
+}
+
+body *{
+    font-family:'Inter', sans-serif;
+}
+
+
+/* PARTE DOS CARDS
+
+max-width - largura máxima do cartão, n fica estendido na tela inteiro, por exemplo um border 0.1 solid.
+
+Caso sua tela seja menor que o max-widht que vc colocou, coloque tb um width de 90% da largura da !!!sua tela!!!
+AOAP
+margin: automatica por que vc coloco uma largura definitiva de 90% da tela e assim seu conteudo se centraliza ao meio e ganha uma borda.
+
+qnd vc coloca:
+seletor + * 
+vc seleciona todos os conteudos de dentro.
+
+*/
+
+/*
+Para colocar o gap vc precisa utilizar:
+    display:flex; 
+    ou
+    display: grid;
+
+    ambos desbloqueiam o gap, mas se caso escolha o display:flex será preciso colocar um flex-direction para arrumar seus elementos de volta em coluna (caso estejam, mas se vc quiser em linha n precisará mexer em nada.)
+*/
+
+main{
+    margin-top: 32px;
+    max-width: 580px;
+    width: 90%;
+    margin: 32px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+
+section{
+    color: white;
+    line-height: 160%;
+    background-image: linear-gradient(90deg, #9572fc 0%, #00ffa6 50.52%, #00d9ff 100%);
+    padding-top: 4px;
+    border-radius: 10px;
+
+}
+/*Color é a cor das letras
+line-height = altura da linha
+
+*/
+
+/*Nesse section estamos mexendo no card como um todo, a cor ao redor, espaçamento, arredondamento da borda e a borda coloridinha em si. E falando da cor da mesma, entramos numa questão de:
+    Usar o border-top (numero)px solid + (qlqr cor);
+        Porém nesse exemplo, n é possivel usar o linear-gradiant, no caso essas cores juntas e para isso é preciso da outra opção:
+    Usar o seletor de section e meio q fazer uma caixinha por fora onde só aparecerá a borda colorida.
+
+Foi utilizado um padding top para fazer a camada onde fica o linear gradiant aparecendo como se fosse uma borda
+*/
+
+section div {
+    background-color: #2A2634;
+    padding: 32px;
+    padding-top: 24px;
+    border-radius: 8px;
+}
+
+/*Section + h2 
+quer dizer que estamos buscando todo H2 de dentro da section (observe a cascata passando o mouse por cima)
+*/
+
+section h2 {
+    font-weight: 900;
+    font-size: 24px;
+    letter-spacing: -0.47px;
+}
+
+section p {
+    font-weight: 400;
+    letter-spacing: -0.18px;
+}
+
+section ul{
+    margin-top: 24px;
+}
+
+section ul li{
+    transition: transform .5s;
+}
+
+section ul li:hover{
+    transform: scale(1.1);
+}
+
+/*
+fONT-WEIGHT e font-size (as vezes, n é preciso mexer) vc pode perceber se o seu navegador já coloca com base na semântica do seu HTML (H2, H1, P, ETC)
+
+Deixei mais para visualizar por que não precisava.
+*/
+
+
+/*
+CSS DISPLAY = Visualização das caixas no HTML
+    2 tipos de display
+        Uma caixa embaixo a outra (caixa em relação a outra) - Chama-se display block
+        Uma caixa ao lado do outra - Display inline
+
+        Uma caixa dentro da outra - Consigo mudar elas de direção/todos os elementos mudando apenas um elemento na caixa de fora (EX: Uma UL com vários li dentro) - display: flex;
+
+    Gap = Espaçamento 
+*/
+
+/*Agora, e se eu adicionar mais jogos, streamers, vai ficar uma linha infinita? Não podemos deixar isso acontecer. Então é preciso adicionar no seletor de ul (lista) para que quando começar a aumentar eles desçam para baixo.
+
+Utilizando um flex wrap - qnd chegar no limite da caixa, ele vai descer por que perceberá que não cabe, mas caso caiba, ele se ajustará.
+*/
+
+ul{
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/*
+class + img = para acessar as imagens da class
+*/
+.my-games-list img{
+    border-radius: 8px;
+    width: 90px;
+}
+
+.channel-list img {
+    border-radius: 50%;
+    border: 1px solid #443E54;
+    width: 70px;
+}
+
+/*
+CSS TRANSITION
+
+Para isso, precisaremos de algo chamado HOVER que vc sempre adiciona com :hover após o seletor.
+Ele serve como se fosse um editor de código, sabe? Você abre ele e pode adicionar algumas propriedades e ele vai te retornar algo especifico, no caso aqui, retorna essas transições e animações.
+*Importante saber que todas as propriedades adicionadas neles apenas ocorreram ao passar o mouse em cima.
+
+transform: scale (1.1) = Serve para o elemento que vc colocar isso, pulsar ao vc passar o mouse por cima, dar uma certa aumentada de tamanho.
+Contudo, não é suave essa pulsação, e meio bruta. Então por isso existe uma propriedade onde vc faz uma transição suave nessa pulsação, para parecer mais natural.
+*Essa propriedade não é utilizada dentro do HOVER mas sim, dentro do seletor original.
+
+EX:
+
+Header div{
+    ....
+    transition: transform .3s; 
+    (.3s significa que essa transição ocorrerá nesse intervalinho de 300 milisegundos)
+}
+
+Header div:hover{
+    transform: scale(1.1)
+} - 
+*/
+
+/*
+Aplicando animação no CSS TRANSITION
+    Para fazer uma animção de qualquer que seja, sua header descendo do topo da página, um pop-up ali no card, etc. É preciso definir essa animação, a partir da propriedade:
+
+    @keyframes + (nome da sua animação - de sua escolha mas lembre de tentar sempre deixar claro oq vc quer dizer com a função)
+
+    EX: @keyframes FromTop {} - Por que a animação virá do topo da página, entende?
+
+    A estrutura do @keyframes para iniciar a animação funciona da seguinte maneira:
+
+    @keyframes FromTop {
+        from {}
+
+        to{}
+    }
+
+    O que basicamente significa que ele vai fazer a animação (ela iniciará) de algum lugar, para algum lugar, onde terminará (from, to).
+*/
+
+@keyframes fromTop {
+    from {
+        opacity: 0;
+        transform: translateY(-30px)
+    }
+
+    to  {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+/*
+Transform: translateY{} = Basicamente, haverá uma mudança/transformação da posição do elemento, em maneira de transição no eixo Y (Vertical). 
+
+Se você quer que o seu elemento termine onde ele estava inicialmente, no caso = POSIÇÃO ZERO. Coloque no translate {0}
+
+E se quiser que começe por cima por exemplo, uma transição de cima para baixo, coloque um valor abaixo de zero para isso.
+
+E por fim, já que tem o delay de carregamento de imagem, elementos em geral, podemos colocar uma Opacity (opacidade) que basicamente, traz o elemento de um escurinho, nem aparecendo, para aparecer completamente na tela.
+
+from{
+    opacity:0;
+}
+
+to{
+    opacity:0;
+
+Além disso, precisamos novamente, colocar propriedades no próprio seletor. Utilizando de exemplo, o código demonstrado a cima, observamos que tem uma opacidade e transform: translateY então colocaremos da seguinte maneira no seletor...
+
+Exemplo:
+
+Header div{
+    animation: fromTop .7s 1s backwards;
+}
+
+ou 
+
+Header div{
+    animation: fromTop .7s;
+    animation-delay: 1s;
+    animation: backwards;
+}
+
+Mas o que isso significa?
+Basicamente, estamos dizendo que a animação tem um tempo de 700milisegundos e 100milisegundos de delay + backwards que explicarei abaixo.
+
+Bom, backwards serve para a animação funcionar da maneira correta, aparecendo, executando e sumindo.
+
+*/
+
+
+@keyframes fromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(30px)
+    }
+
+    to  {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+/*
+CSS TRANSITION
+
+ANIMAÇÃO - Agora, é a parte de animar os cards para eles aos carregar a tela subirem de baixo para cima, porém um de cada vez, então não da pra simplesmente usarmos esse código (tipo o do FromTop)
+
+@keyframes fromBottom {
+    from {
+        opacity: 0;
+        transform: translateY(30px)
+    }
+
+    to  {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+main section{
+    animation: fromBottom .7s .4s;
+}
+
+E no lugar, utilizaremos um 
+
+EX:
+
+Main section:nth-child (1) {} - Mas o que isso significa? Estamos simplesmente pegando a primeira section da main ( do nosso HTML).
+
+E eu preciso fazer isso com cada section que vou animar, e apartir disso, meu código funcionará com delays e cada animação aparecerá em um momento.
+*Importante lembrar que é preciso dizer da onde a animação vem para a main section, o tempo de transição e por fim, backwards.
+
+*/
+
+main section {
+    animation: fromBottom .7s backwards;
+}
+
+main section:nth-child(1){
+    animation-delay: 0 backwards;
+}
+
+main section:nth-child(2){
+    animation-delay: .4s backwards;
+}
+
+main section:nth-child(3){
+    animation-delay: .8s;
+}
