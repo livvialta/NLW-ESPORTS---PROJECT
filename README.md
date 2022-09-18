@@ -1,16 +1,21 @@
-#NLW eSports 
-![preview](./gitgub/preview.png)
+## NLW eSports <3
+#
+
+![preview](./.github/preview.png)
 > Trilha Explorer
 
 Projeto construido no evento Next Level Week da Rocketseat.
 
-## Tecnologias 
+[🔗 Clique aqui para acessar](https://livvialta.github.io/nlw-esports-explorer)
+
+## 🛠 Tecnologias 
 
 - HTML
 - CSS
 - Git e Git Hub
 
-## Contato
 
-vii.bazilio@gmail.com
+## 💌 Contato
+
+- vii.bazilio@gmail.com
 
